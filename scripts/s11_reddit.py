@@ -36,4 +36,3 @@ resultadoDF = df.select("subreddit", "author") \
 #resultadoDF.printSchema()
 resultadoDF.show(50)
 #resultadoDF.write.csv('outputUserMorePost.csv')
-
