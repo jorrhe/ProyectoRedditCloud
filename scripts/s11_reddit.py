@@ -9,18 +9,11 @@ import pyspark.sql.functions as f
 from pyspark.sql import Window
 from pushshift import file_to_dataframe
 
-# Por temas de caracteres al hacer df.show
-import sys
-
-reload(sys)
-sys.setdefaultencoding('utf-8')
-
-conf = SparkConf().setMaster('local').setAppName('subredditsUsersMorePosts')
+conf = SparkConf().setAppName('subredditsUsersMorePosts')
 sc = SparkContext(conf=conf)
 ss = SparkSession(sc)
 
-# df = s3_to_dataframe('s3://cloud-jorge/Ejemplo10000Filas.json', sc, ss)
-df = file_to_dataframe('Ejemplo10000Filas.json', ss)
+df = file_to_dataframe('RS_2019-01', ss)
 
 w = Window.partitionBy('subreddit')
 
@@ -33,6 +26,4 @@ resultadoDF = df.select("subreddit", "author") \
                 .drop('maxCount')\
                 .orderBy(f.col("count").desc(), f.col("subreddit").asc())
 
-#resultadoDF.printSchema()
-resultadoDF.show(50)
-#resultadoDF.write.csv('outputUserMorePost.csv')
+resultadoDF.write.json("s11_salida")
