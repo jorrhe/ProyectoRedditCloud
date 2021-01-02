@@ -9,7 +9,7 @@ import pyspark.sql.functions as f
 from pyspark.sql import Window
 from pushshift import file_to_dataframe
 
-conf = SparkConf().setAppName('subredditsUsersMorePosts')
+conf = SparkConf().setAppName('S11')
 sc = SparkContext(conf=conf)
 ss = SparkSession(sc)
 

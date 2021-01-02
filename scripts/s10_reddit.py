@@ -8,7 +8,7 @@ from pyspark.sql import SparkSession
 import pyspark.sql.functions as f
 from pushshift import file_to_dataframe
 
-conf = SparkConf().setAppName('subredditsScoreComments')
+conf = SparkConf().setAppName('S10')
 sc = SparkContext(conf=conf)
 ss = SparkSession(sc)
 
