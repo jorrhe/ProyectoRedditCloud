@@ -9,11 +9,11 @@ from pyspark.sql.functions import from_unixtime, avg
 
 from pushshift import file_to_dataframe
 
-conf = SparkConf().setMaster('local').setAppName('StockSumary')
+conf = SparkConf().setAppName('S2')
 sc = SparkContext(conf=conf)
 ss = SparkSession(sc)
 
-df = file_to_dataframe('Ejemplo100000FilasUTF8.json', ss)
+df = file_to_dataframe('RS_2019-01', ss)
 
 df.select(
     'subreddit',
@@ -27,4 +27,4 @@ df.select(
 ).orderBy(
     "subreddit",
     "hour"
-).write.csv("salida_s2.csv")
+).write.json("salida_s2")

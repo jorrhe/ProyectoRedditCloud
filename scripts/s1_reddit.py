@@ -9,11 +9,11 @@ from pyspark.sql.functions import from_unixtime, to_timestamp, hour, avg
 
 from pushshift import file_to_dataframe
 
-conf = SparkConf().setMaster('local').setAppName('StockSumary')
+conf = SparkConf().setAppName('S1')
 sc = SparkContext(conf=conf)
 ss = SparkSession(sc)
 
-df = file_to_dataframe('Ejemplo10000Filas.json', ss)
+df = file_to_dataframe('RS_2019-01', ss)
 
 df.select(
     'score',
@@ -22,4 +22,4 @@ df.select(
     'hour'
 ).agg(
     avg('score').alias('avg')
-).show()
+).write.json("s1_salida")
