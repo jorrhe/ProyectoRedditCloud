@@ -14,8 +14,7 @@ ss = SparkSession(sc)
 df = file_to_dataframe('RS_2019-01', ss)
 
 df.select("title", "score", "permalink").filter((f.col("title") != "") & (f.col("title") != "[deleted]") & (f.col("title") != "[removed]"))\
-    .withColumn("word", f.explode(f.split(f.col("title"), ' '))) \
-    .orderBy("score", ascending=False) \
-    .limit(100).withColumn("words", f.size(f.split(f.col("title"), ' '))) \
-    .select("score", "words", "permalink").write.json("s5_salida")
+    .orderBy("score", ascending=False)\
+    .limit(100).withColumn("words_title", f.size(f.split(f.col("title"), ' ')))\
+    .select("score", "words_title", "permalink").write.json("s5_salida")
 

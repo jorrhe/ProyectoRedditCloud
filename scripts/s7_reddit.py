@@ -15,4 +15,5 @@ df = file_to_dataframe('RS_2019-01', ss)
 
 df.filter(col("over_18") == True)\
     .groupBy(col("subreddit")).count().\
+    orderBy("subreddit").\
     select("subreddit", col("count").alias("nsfw_posts")).write.json("s7_salida")
