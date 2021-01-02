@@ -5,11 +5,11 @@
 
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import from_unixtime, avg, col
+from pyspark.sql.functions import from_unixtime, col
 
 from pushshift import file_to_dataframe
 
-conf = SparkConf().setMaster('local').setAppName('s3')
+conf = SparkConf().setAppName('S3')
 sc = SparkContext(conf=conf)
 ss = SparkSession(sc)
 

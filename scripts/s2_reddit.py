@@ -27,4 +27,4 @@ df.select(
 ).orderBy(
     "subreddit",
     "hour"
-).write.json("salida_s2")
+).write.json("s2_salida")

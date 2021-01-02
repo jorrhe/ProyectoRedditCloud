@@ -2,7 +2,7 @@
 # Realizado por Jorge Rosello, Daniel Alcazar, Francisco Javier Lozano
 # Nombre Script: S7
 # Descripcion: Extrae el numero de posts nsfw de cada subreddit,
-# contrastándolo frente a su número total de posts e indicando el porcentaje de estos que son nsfw
+# contrastandolo frente a su numero total de posts e indicando el porcentaje de estos que son nsfw
 
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession

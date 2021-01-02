@@ -1,8 +1,9 @@
 # Cloud y Big Data
 # Realizado por Jorge Rosello, Daniel Alcazar, Francisco Javier Lozano
 # Nombre Script: S6
-# Descripcion: Extrae el numero de posts nsfw de reddit, junto al número de posts totales y
+# Descripcion: Extrae el numero de posts nsfw de reddit, junto al numero de posts totales y
 # el porcentaje de los cuales es nsfw
+
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as f
