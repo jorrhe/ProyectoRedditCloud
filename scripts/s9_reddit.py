@@ -7,18 +7,11 @@ from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession
 from pushshift import file_to_dataframe
 
-# Por temas de caracteres al hacer df.show
-import sys
-
-reload(sys)
-sys.setdefaultencoding('utf-8')
-
-conf = SparkConf().setMaster('local').setAppName('subredditsTop10Comments')
+conf = SparkConf().setAppName('subredditsTop10Comments')
 sc = SparkContext(conf=conf)
 ss = SparkSession(sc)
 
-# df = s3_to_dataframe('s3://cloud-jorge/Ejemplo10000Filas.json', sc, ss)
-df = file_to_dataframe('Ejemplo10Filas.json', ss)
+df = file_to_dataframe('RS_2019-01', ss)
 
 resultadoDF = df.select("subreddit", "num_comments") \
                 .groupBy("subreddit") \
@@ -27,6 +20,4 @@ resultadoDF = df.select("subreddit", "num_comments") \
                 .orderBy('num_comments', ascending=False) \
                 .limit(10)
 
-#resultadoDF.printSchema()
-resultadoDF.show()
-#resultadoDF.write.csv('outputComments.csv')
+resultadoDF.write.json("s9_salida")
