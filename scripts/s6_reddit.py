@@ -8,11 +8,11 @@ from pyspark.sql import SparkSession
 import pyspark.sql.functions as f
 from pushshift import file_to_dataframe
 
-conf = SparkConf().setMaster('local').setAppName('reddit')
+conf = SparkConf().setAppName('S6')
 sc = SparkContext(conf=conf)
 ss = SparkSession(sc)
-df = file_to_dataframe('ficheros/Ejemplo10000Filas.json', ss)
+df = file_to_dataframe('RS_2019-01', ss)
 total_posts = df.count()
 df.groupBy(f.col("over_18")).count()\
     .withColumn("percentage", (f.col("count")/total_posts)*100)\
-    .write.csv("nsfw_count_reddit_out.csv")
+    .write.json("s6_salida")
