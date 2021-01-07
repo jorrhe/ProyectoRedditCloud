@@ -8,8 +8,10 @@ with open("../salida/S2_output.json",'r')as file:
     while line:
         jsonData = json.loads(line)
         if jsonData['subreddit'] != previousSubreddit:
-            with open("s2split/"+previousSubreddit + ".json", 'w') as output:
-                json.dump(toFile, output)
+
+            if len(toFile) == 23:
+                with open("../docs/assets/json/s2/"+previousSubreddit + ".json", 'w') as output:
+                    json.dump(toFile, output, ensure_ascii=False)
             previousSubreddit = jsonData['subreddit']
             toFile = []
         else:
