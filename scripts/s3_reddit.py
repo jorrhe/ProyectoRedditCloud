@@ -18,8 +18,9 @@ df = file_to_dataframe('RS_2019-01', ss)
 df.select(
     from_unixtime('created_utc', "dd").alias("day")
 ).groupby(
-    'day'
+    'subreddit', 'day'
 ).count().select(
     "day",
+    "subreddit",
     col("count").alias("posts")
-).write.json("s3_salida")
+).orderBy("day", "subreddit").write.json("s3_salida")
