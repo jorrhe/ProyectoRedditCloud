@@ -16,6 +16,7 @@ ss = SparkSession(sc)
 df = file_to_dataframe(get_file(), ss)
 
 df.select(
+    "subreddit",
     from_unixtime('created_utc', "dd").alias("day")
 ).groupby(
     'subreddit', 'day'
@@ -23,4 +24,7 @@ df.select(
     "day",
     "subreddit",
     col("count").alias("posts")
-).orderBy("day", "subreddit").write.json("s3_salida")
+).orderBy(
+    "day",
+    "subreddit"
+).write.json("s3_salida")

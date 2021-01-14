@@ -1,7 +1,6 @@
 from pyspark.sql import SparkSession, DataFrame
 import argparse
 import sys
-from os import path
 
 
 def get_file():
@@ -15,10 +14,6 @@ def get_file():
         sys.exit()
 
     file_path = args.file
-
-    if not path.exists(file_path):
-        print("Error %s does not exist" % file_path)
-        sys.exit()
 
     return file_path
 
