@@ -6,14 +6,20 @@
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
-from pushshift import file_to_dataframe
+from pushshift import file_to_dataframe, get_file
 
 conf = SparkConf().setAppName('S7')
 sc = SparkContext(conf=conf)
 ss = SparkSession(sc)
-df = file_to_dataframe('RS_2019-01', ss)
+df = file_to_dataframe(get_file(), ss)
 
-df.filter(col("over_18") == True)\
-    .groupBy(col("subreddit")).count().\
-    orderBy("subreddit").\
-    select("subreddit", col("count").alias("nsfw_posts")).write.json("s7_salida")
+df.filter(
+    col("over_18") == True
+).groupBy(
+    col("subreddit")
+).count().orderBy(
+    "subreddit"
+).select(
+    "subreddit",
+    col("count").alias("nsfw_posts")
+).write.json("s7_salida")

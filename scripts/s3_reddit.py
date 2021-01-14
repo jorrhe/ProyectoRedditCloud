@@ -7,13 +7,13 @@ from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import from_unixtime, col
 
-from pushshift import file_to_dataframe
+from pushshift import file_to_dataframe, get_file
 
 conf = SparkConf().setAppName('S3')
 sc = SparkContext(conf=conf)
 ss = SparkSession(sc)
 
-df = file_to_dataframe('RS_2019-01', ss)
+df = file_to_dataframe(get_file(), ss)
 
 df.select(
     from_unixtime('created_utc', "dd").alias("day")
