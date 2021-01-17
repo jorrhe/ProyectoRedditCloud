@@ -17,3 +17,17 @@ $section-headings-color: $color-orange !default;
 $body-link-color: $color-red !default;
 
 @import "jekyll-theme-cayman";
+
+h2,p{
+  text-align: justify;
+}
+.project-tagline{
+  text-align: center;
+}
+#chart{
+  width: 100%;
+  height: 500px;
+}
+#extra{
+  max-width: 320px;
+}
