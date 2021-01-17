@@ -6,19 +6,30 @@
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as f
-from pushshift import file_to_dataframe
+from pushshift import file_to_dataframe, get_file
 
 conf = SparkConf().setAppName('S10')
 sc = SparkContext(conf=conf)
 ss = SparkSession(sc)
 
-df = file_to_dataframe('RS_2019-01', ss)
+df = file_to_dataframe(get_file(), ss)
 
-resultadoDF = df.select("subreddit", "score", "num_comments") \
-                .groupBy("subreddit") \
-                .sum("score", "num_comments")\
-                .withColumn("Relacion", (f.col("sum(score)")/f.col("sum(num_comments)"))*100)\
-                .withColumn("Relacion", f.round(f.col("Relacion"), 2))\
-                .orderBy('sum(score)', ascending=False)
-
-resultadoDF.write.json("s10_salida")
+df.select(
+    "subreddit",
+    "score",
+    "num_comments"
+).groupBy(
+    "subreddit"
+).sum(
+    "score",
+    "num_comments"
+).withColumn(
+    "Relacion",
+    (f.col("sum(score)")/f.col("sum(num_comments)"))*100
+).withColumn(
+    "Relacion",
+    f.round(f.col("Relacion"), 2)
+).orderBy(
+    'sum(score)',
+    ascending=False
+).write.json("s10_salida")
