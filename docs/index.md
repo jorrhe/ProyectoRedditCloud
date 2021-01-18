@@ -126,9 +126,7 @@ A continuación detallamos una tabla con el número de nodos y ejecutores y el t
 |2|2|3m10.456s|
 |2|4|2m51.837s|
 
-<p class="center">
-   <img src="./assets/img/rendimiento.png">
-</p>
+<img src="./assets/img/rendimiento.png">
 
 ## 9. Dificultades y optimizaciones 
 
