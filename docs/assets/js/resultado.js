@@ -422,21 +422,64 @@ function cargarGraficaS5(){
 }
 
 function  cargarGraficaS6(){
+    // Create chart instance
     var chart = am4core.create("chartdiv", am4charts.PieChart);
     am4core.useTheme(am4themes_animated);
     // Add data
-    chart.dataSource.url = "/assets/json/s6_output.json"
+    chart.dataSource.url = "s6_output.json"
 
     // Add and configure Series
     var pieSeries = chart.series.push(new am4charts.PieSeries());
     pieSeries.dataFields.value = "count";
     pieSeries.dataFields.category = "over_18";
+    pieSeries.ticks.template.disabled = true;
+    pieSeries.alignLabels = false;
+    pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
+    pieSeries.labels.template.radius = am4core.percent(-30);
+    pieSeries.labels.template.fill = am4core.color("white");
+    pieSeries.slices.template.tooltipText = "{value.value}";
 
+    //creaate colorset and set it to piechart
     var colorSet = new am4core.ColorSet();
     colorSet.list = ["#ff5700", "#e38864",].map(function(color) {
         return new am4core.color(color);
     });
     pieSeries.colors = colorSet;
+
+    //create custom Legend
+    var legend = new am4charts.Legend();
+    legend.parent = chart.chartContainer;
+    //legend.align = "right";
+    legend.position = "bottom";
+    legend.valueLabels.template.text = "{percent}%";
+    legend.itemContainers.template.clickable = false;
+    legend.itemContainers.template.focusable = false;
+    legend.itemContainers.template.cursorOverStyle = am4core.MouseCursorStyle.default;
+
+    //Populate Legend with data once it's been parsed from datasource
+    var NSFWpercentage;
+    var SFWpercentage;
+    chart.dataSource.events.on("parseended", function(ev) {
+        // parsed data is assigned to data source's `data` property
+        var data = ev.target.data;
+        for (var i = 0; i < data.length; i++) {
+            if(data[i]["over_18"] == true){
+                NSFWpercentage = data[i]["percentage"]
+            }
+            else{
+                SFWpercentage = data[i]["percentage"]
+            }
+        }
+        legend.data = [{
+            "name": "Posts con contenido adulto",
+            "percent":Math.round(NSFWpercentage*10)/10,
+            "fill":"#ff5700"
+        }, {
+            "name": "Posts sin contenido adulto",
+            "percent":Math.round(SFWpercentage*10)/10,
+            "fill": "#e38864"
+        }];
+    });
 
 }
 
