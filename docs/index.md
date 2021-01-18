@@ -8,9 +8,9 @@ layout: default
 
 ## Contenido
 
-1. [El problema](#el-problema)
-2. [Necesidad de Big Data](#necesidad-de-big-data)
-3. [La solución](#la-solución)
+1. [El problema](#1-el-problema)
+2. [Necesidad de Big Data](#2-necesidad-de-big-data)
+3. [La solución](#3-la-solución)
    - [\[S1\] Franja horaria donde se consigue mayor puntuación](./resultado?r=s1)
    - [\[S2\] Franja horaria donde se consigue mayor puntuación en cada subreddit](./resultado?r=s2)
    - [\[S3\] Número de posts por dia y por subreddit](./resultado?r=s3)
@@ -22,15 +22,15 @@ layout: default
    - [\[S9\] Los 10 subreddits con más comentarios](./resultado?r=s9)
    - [\[S10\] Relación de puntuación y número de comentarios de cada subreddit](./resultado?r=s10)
    - [\[S11\] Usuario que más ha posteado en cada subreddit](./resultado?r=s11)
-4. [Trabajo existente relacionado](#trabajo-existente-relacionado)
-5. [Descripción del modelo y los datos](#descripción-del-modelo-y-los-datos)
-6. [Infraestructura, modelos de programación y plataformas](#infraestructura-modelos-de-programación-y-plataformas)
-7. [Explicación del código y como usarlo](#explicación-del-código-y-como-usarlo)
-8. [Evaluación del rendimiento](#evaluación-del-rendimiento)
-9. [Dificultades y optimizaciones](#dificultades-y-optimizaciones)
-10. [Logros y próximos objetivos](#logros-y-próximos-objetivos)
+4. [Trabajo existente relacionado](#4-trabajo-existente-relacionado)
+5. [Descripción del modelo y los datos](#5-descripción-del-modelo-y-los-datos)
+6. [Infraestructura, modelos de programación y plataformas](#6-infraestructura-modelos-de-programación-y-plataformas)
+7. [Explicación del código y como usarlo](#7-explicación-del-código-y-como-usarlo)
+8. [Evaluación del rendimiento](#8-evaluación-del-rendimiento)
+9. [Dificultades y optimizaciones](#9-dificultades-y-optimizaciones)
+10. [Logros y próximos objetivos](#10-logros-y-próximos-objetivos)
 
-## El problema
+## 1. El problema
 
 Nuestro proyecto consiste en el análisis de la página web de agregación de contenido Reddit. La plataforma sirve para publicar y leer contenido de diferentes temáticas.  Los usuarios de Reddit son tanto creadores cómo consumidores del contenido alojado en la página.
 
@@ -41,7 +41,7 @@ Reddit engloba todo tipo de contenidos: vídeos, imágenes, enlaces, textos,etc�
 
 En Reddit se genera una cantidad enorme y dispersa de información sobre todo tipo de temáticas. Por eso, para realizar un análisis del contenido es necesario utilizar Big Data.
 
-## Necesidad de Big Data
+## 2. Necesidad de Big Data
 
 Cómo consecuencia de la enorme actividad de Reddit, se generan constantemente y a grandes velocidades muchísimos datos. Por eso, encontramos necesario realizar procesamiento Big Data para obtener información de gran utilidad.
 
@@ -53,7 +53,7 @@ Se pueden llegar a crear hasta 80 comentarios por segundo, y hasta 20 posts. Por
 
 Además, aprovechando el procesamiento de datos en paralelo podemos conseguir que dicho procesamiento se realice de manera mucho más efectiva y rápida utilizando el servicio EMR proporcionado por Amazon.
 
-## La solución
+## 3. La solución
 
 Para abordar la solución hemos utilizado cómo lenguaje de programación Python y el framework Spark para procesar datos distribuidos junto a Hadoop.
 
@@ -73,13 +73,13 @@ Hemos diseñado varias utilidades que proporcionan información relevante acerca
 
 La información producida por los scripts desarrollados, la mostramos en diferentes gráficos realizados con las librerías de Javascript [amcharts](https://www.amcharts.com/) y [flourish studio](https://flourish.studio/). Estas librerías permiten visualizar gráficas interactivas con un gran dinamismo y bonita apariencia a partir de los resultados de los scripts.
 
-## Trabajo existente relacionado
+## 4. Trabajo existente relacionado
 
 La propia página de agregación de contenido ofrece la posibilidad de ver los posts y subreddits que son relevantes en la actualidad, pero no muestra los de días anteriores. Esta funcionalidad puede ser útil para los usuarios que utilizan a diario la plataforma pero no proporcionan un análisis más allá del momento actual.
 
 Además existe la página [subredditstats](https://subredditstats.com/), que muestra algunas estadísticas actuales de los subreddits. Esta información que nos ofrece es útil pero tiene algunas limitaciones en nuestra opinión, ya que son estadísticas muy generales y no muestran estadísticas de fechas anteriores. 
 
-##  Descripción del modelo y los datos
+##  5. Descripción del modelo y los datos
 
 El dataset utilizado ha sido descargado desde [pushshift.io](https://pushshift.io/). La filosofía de pushshift.io es simple, agregar todo el contenido que existe de reddit en un dataset para poder trabajar con los datos usando técnicas de Big Data.
 
@@ -91,18 +91,19 @@ El dataset utilizado ha sido descargado desde [pushshift.io](https://pushshift.i
 
 En reddit los dos elementos principales son: posts y comentarios. En nuestro análisis hemos utilizado posts. Un post tiene campos como:
 
-- `title`: Titulo del post.
-- `author`: El autor del post
-- `created`: Fecha de creación
-- `subreddit`: Subreddit al que pertenece
-- `num_comments`: Número de comentarios
+- `title`: titulo del post.
+- `author`: el autor del post
+- `created`: fecha de creación
+- `subreddit`: subreddit al que pertenece
+- `num_comments`: número de comentarios
+- `score`: puntuación del post
 - ...
 
 Cada post tiene muchos más campos que estos que se pueden revisar descargando una muestra del dataset aquí. Además en esta página de documentación se ofrece una explicación más detallada de la mayoría de estos.
 
 En el repositiorio de Github tenemos un [fichero en formato JSON](https://github.com/beybo/ProyectoRedditCloud/blob/main/ficheros/EjemploFila.json) con todos los campos que puede tener un post que se ha extraido del dataset de pushshift.io.
 
-## Infraestructura, modelos de programación y plataformas
+## 6. Infraestructura, modelos de programación y plataformas
 
 En cuanto a la infraestructura se ha utilizado un cluster `m4x.large` de AWS, de un nodo master y otros dos workers, proporcionado por el servicio de EMR de AWS.
 
@@ -110,11 +111,11 @@ El modelo de programación utilizado es el brindado por el framework `Spark 2.4.
 
 Para el almacenamiento del dataset hemos utilizado también un cubo del servicio S3 de AWS.
 
-## Explicación del código y como usarlo
+## 7. Explicación del código y como usarlo
 
 Si deseas probar el código, pincha [aquí](https://github.com/beybo/ProyectoRedditCloud/blob/main/README.md) para acceder a las instrucciones colgadas en el repositorio del proyecto.
 
-##  Evaluación del rendimiento
+## 8. Evaluación del rendimiento
 
 A continuación detallamos una tabla con el número de nodos y ejecutores y el tiempo que ha llevado la ejecución del script S3_reddit.py en un cluster m4x.large:
 
@@ -127,7 +128,7 @@ A continuación detallamos una tabla con el número de nodos y ejecutores y el t
 |2|2|3m10.456s|
 |2|4|2m51.837s|
 
-## Dificultades y optimizaciones 
+## 9. Dificultades y optimizaciones 
 
 Uno de los aspectos más desafiantes de la implementación y paralelización ha sido el de trabajar con un dataset de 50GB.
 
@@ -135,7 +136,7 @@ No solo tuvimos que implementar el código intentando optimizar los recursos de 
 
 Otra técnica para la mejora del rendimiento que realizamos fue aumentar la memoria de Spark a 9486MB modificando un parámetro del archivo de configuración ubicado en `/etc/spark/conf.dist/spark-defaults.conf spark.driver.memory`  
 
-## Logros y próximos objetivos
+## 10. Logros y próximos objetivos
 
 Reflexionando sobre los objetivos alcanzados, creemos que hemos realizado con éxito un estudio que ofrece una visión interesante y curiosa sobre los posts del mes de Enero de 2019 de Reddit. Además para hacer algo diferente y ofrecer una experiencia más interactiva hemos logrado mostrar el resultado mediante una serie de gráficas interactivas gracias a las librerías amcharts y flourish studio.
 
