@@ -103,7 +103,7 @@ En el repositiorio de Github tenemos un [fichero en formato JSON](https://github
 
 ## 6. Infraestructura, modelos de programación y plataformas
 
-En cuanto a la infraestructura se ha utilizado un cluster `m4x.large` de AWS, de un nodo master y otros dos workers, proporcionado por el servicio de EMR de AWS.
+En cuanto a la infraestructura se ha utilizado un cluster `m4.xlarge` de AWS, de un nodo master y otros dos workers, proporcionado por el servicio de EMR de AWS.
 
 El modelo de programación utilizado es el brindado por el framework `Spark 2.4.4` utilizando el lenguaje Python y además haciendo uso del framework `Hadoop 2.8.5 YARN`.
 
@@ -115,7 +115,7 @@ Si deseas probar el código, pincha [aquí](https://github.com/beybo/ProyectoRed
 
 ## 8. Evaluación del rendimiento
 
-A continuación detallamos una tabla con el número de nodos y ejecutores y el tiempo que ha llevado la ejecución del script S3_reddit.py en un cluster m4x.large:
+A continuación detallamos una tabla con el número de nodos y ejecutores y el tiempo que ha llevado la ejecución del script S3_reddit.py en un cluster m4.xlarge:
 
 | Número de Ejecutores | Número de Cores | Tiempo |
 |:-------------|:------------------|:------|
