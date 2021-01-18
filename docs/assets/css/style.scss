@@ -18,7 +18,7 @@ $body-link-color: $color-red !default;
 
 @import "jekyll-theme-cayman";
 
-h2,p{
+h2,p:not([align]){
   text-align: justify;
 }
 .project-tagline,#titulo,#subtitulo{
@@ -30,7 +30,7 @@ h2,p{
 }
 #extra{
   display: none;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-flow: row wrap;
 }
@@ -38,9 +38,28 @@ h2,p{
   min-width: 280px;
   margin-left: 20px;
 }
-a{
+main a,.naranja{
   color: $color-orange !important;
+}
+.grande, .grande ~ a{
+  display: block;
+}
+.grande{
+  font-size: 40pt;
 }
 footer{
   text-align: center;
+}
+
+.s11{
+  text-align: center;
+  font-size: 14pt;
+  margin-top: 20px;
+}
+p.center{
+  text-align: center;
+}
+img.max{
+  max-width: 400px;
+  width: 100%;
 }

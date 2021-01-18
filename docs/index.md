@@ -2,11 +2,26 @@
 layout: default
 ---
 
+<p class="center">
+   <img src="./assets/img/logo.png" class="max">
+</p>
+
 ## Contenido
 
 1. [El problema](#el-problema)
 2. [Necesidad de Big Data](#necesidad-de-big-data)
-3. [La solución](#la-solucin)
+3. [La solución](#la-solución)
+   - [\[S1\] Franja horaria donde se consigue mayor puntuación](/resultado?r=s1)
+   - [\[S2\] Franja horaria donde se consigue mayor puntuación en cada subreddit](/resultado?r=s2)
+   - [\[S3\] Número de posts por dia y por subreddit](/resultado?r=s3)
+   - [\[S4\] Número de palabras que tiene el contenido de los 100 post con mayor puntuación](/resultado?r=s4)
+   - [\[S5\] Número de palabras que tienen los 100 post más votados en su título](/resultado?r=s5)
+   - [\[S6\] Número de posts en todo Reddit etiquetado cómo nsfw (Mayor de 18 años)](/resultado?r=s6)
+   - [\[S7\] Número de posts de cada subreddit etiquetados cómo nsfw (Mayor de 18 años)](/resultado?r=s7)
+   - [\[S8\] Los 10 subreddits con mayor puntuación](/resultado?r=s8)
+   - [\[S9\] Los 10 subreddits con más comentarios](/resultado?r=s9)
+   - [\[S10\] Relación de puntuación y número de comentarios de cada subreddit](/resultado?r=s10)
+   - [\[S11\] Usuario que más ha posteado en cada subreddit](/resultado?r=s11)
 4. [Trabajo existente relacionado](#trabajo-existente-relacionado)
 5. [Descripción del modelo y los datos](#descripción-del-modelo-y-los-datos)
 6. [Infraestructura, modelos de programación y plataformas](#infraestructura-modelos-de-programación-y-plataformas)
@@ -21,6 +36,7 @@ Nuestro proyecto consiste en el análisis de la página web de agregación de co
 
 El sitio web está compuesto por comunidades individuales conocidas cómo subreddits. Dentro de cada subreddit se publican post relacionados que giran entorno a una temática. Se puede interactuar con estos posts principalmente publicando un comentario y dejando un voto positivo o negativo, obteniendo el post asi interacciones y valoraciones de los usuarios.
 
+
 Reddit engloba todo tipo de contenidos: vídeos, imágenes, enlaces, textos,etc… Es como una especie de foro dividido en subforos de todo tipo de temáticas donde los usuarios pueden comentar y votar posts realizados por otros usuarios.
 
 En Reddit se genera una cantidad enorme y dispersa de información sobre todo tipo de temáticas. Por eso, para realizar un análisis del contenido es necesario utilizar Big Data.
@@ -31,7 +47,9 @@ Cómo consecuencia de la enorme actividad de Reddit, se generan constantemente y
 
 Se pueden llegar a crear hasta 80 comentarios por segundo, y hasta 20 posts. Por poner un ejemplo, solo el mes de Enero del dataset utilizado ocupa 4 GB comprimido y 47 descomprimido.
 
-![stats](./assets/img/stats.png "stats")
+<p class="center">
+   <img src="./assets/img/stats.png">
+</p>
 
 Además, aprovechando el procesamiento de datos en paralelo podemos conseguir que dicho procesamiento se realice de manera mucho más efectiva y rápida utilizando el servicio EMR proporcionado por Amazon.
 
@@ -43,19 +61,19 @@ Para abordar la solución hemos utilizado cómo lenguaje de programación Python
 
 Hemos diseñado varias utilidades que proporcionan información relevante acerca del contenido publicado en Reddit en meses anteriores. Principalmente nos hemos enfocado en extraer información de los subreddits más populares y sus características. También hemos desarrollado scripts más generales que contemplan todos los subreddits, no sólo los más populares. Las funcionalidades desarrolladas obtienen la siguiente información para el mes de Enero de 2019:
 
-- [La franja horaria donde se consigue mayor puntuación](/resultado?r=s1).
-- [La franja horaria donde se consigue mayor puntuación en cada subreddit](/resultado?r=s2).
-- [El número de posts por dia y por subreddit](/resultado?r=s3).
-- [El número de palabras que tienen los 100 post más votados en su contenido](/resultado?r=s4).
-- [El número de palabras que tienen los 100 post más votados en su título](/resultado?r=s5).
-- [El número de posts en todo Reddit etiquetado cómo nsfw(over_18)](/resultado?r=s6).
-- [El número de posts de cada subreddit etiquetados cómo nsfw(over_18)](/resultado?r=s7).
-- [Los 10 subreddits con más puntuación](/resultado?r=s8).
-- [Los 10 subreddits con más comentarios.](/resultado?r=s9).
-- [Relación de puntuación y número de comentarios de cada subreddit](/resultado?r=s10).
-- [Los usuarios que más han posteado en cada subreddit](/resultado?r=s11).
+- [\[S1\] La franja horaria donde se consigue mayor puntuación](/resultado?r=s1)
+- [\[S2\] La franja horaria donde se consigue mayor puntuación en cada subreddit](/resultado?r=s2)
+- [\[S3\] El número de posts por dia y por subreddit](/resultado?r=s3)
+- [\[S4\] El número de palabras que tiene el contenido de los 100 post con mayor puntuación](/resultado?r=s4)
+- [\[S5\] El número de palabras que tiene el título de los 100 post con mayor puntuación](/resultado?r=s5)
+- [\[S6\] El número de posts en todo Reddit etiquetado cómo nsfw (Mayor de 18 años)](/resultado?r=s6)
+- [\[S7\] El número de posts de cada subreddit etiquetados cómo nsfw (Mayor de 18 años)](/resultado?r=s7)
+- [\[S8\] Los 10 subreddits con mayor puntuación](/resultado?r=s8)
+- [\[S9\] Los 10 subreddits con mayor número de comentarios](/resultado?r=s9)
+- [\[S10\] La relación de puntuación y número de comentarios de cada subreddit](/resultado?r=s10)
+- [\[S11\] El usuario que más ha posteado en cada subreddit](/resultado?r=s11)
 
-La información producida por los scripts desarrollados, la mostramos en diferentes gráficos realizados con las librerías de Javascript amcharts y flourish studio. Estas librerías permiten visualizar gráficas interactivas con un gran dinamismo y bonita apariencia a partir de los resultados de los scripts.
+La información producida por los scripts desarrollados, la mostramos en diferentes gráficos realizados con las librerías de Javascript [amcharts](https://www.amcharts.com/) y [flourish studio](https://flourish.studio/). Estas librerías permiten visualizar gráficas interactivas con un gran dinamismo y bonita apariencia a partir de los resultados de los scripts.
 
 ## Trabajo existente relacionado
 
@@ -67,30 +85,36 @@ Además existe la página [subredditstats](https://subredditstats.com/), que mue
 
 El dataset utilizado ha sido descargado desde [pushshift.io](https://pushshift.io/). La filosofía de pushshift.io es simple, agregar todo el contenido que existe de reddit en un dataset para poder trabajar con los datos usando técnicas de Big Data.
 
+<p class="center">
+   <img src="./assets/img/pushshift.png" class="max">
+</p>
+
 [Aquí](https://files.pushshift.io/reddit/) está el directorio de contenido donde se encuentra nuestro dataset entre muchos otros y el [enlace directo al dataset](https://files.pushshift.io/reddit/submissions/RS_2019-01.zst).
 
 En reddit los dos elementos principales son: posts y comentarios. En nuestro análisis hemos utilizado posts. Un post tiene campos como:
 
-- title: Titulo del post.
-- author: El autor del post
-- created: Fecha de creación
-- subreddit: Subreddit al que pertenece
-- num_comments: Número de comentarios
+- `title`: Titulo del post.
+- `author`: El autor del post
+- `created`: Fecha de creación
+- `subreddit`: Subreddit al que pertenece
+- `num_comments`: Número de comentarios
 - ...
 
 Cada post tiene muchos más campos que estos que se pueden revisar descargando una muestra del dataset aquí. Además en esta página de documentación se ofrece una explicación más detallada de la mayoría de estos.
 
+En el repositiorio de Github tenemos un [fichero en formato JSON](https://github.com/beybo/ProyectoRedditCloud/blob/main/ficheros/EjemploFila.json) con todos los campos que puede tener un post que se ha extraido del dataset de pushshift.io.
+
 ## Descripción técnica de la (aplicación paralela), modelos de programación, plataforma e infraestructura
 
-En cuanto a la infraestructura se ha utilizado un cluster m4x.large de AWS, de un nodo master y otros dos workers, proporcionado por el servicio de EMR de AWS.
+En cuanto a la infraestructura se ha utilizado un cluster `m4x.large` de AWS, de un nodo master y otros dos workers, proporcionado por el servicio de EMR de AWS.
 
-El modelo de programación utilizado es el brindado por el framework Spark 2.4.4 utilizando el lenguaje Python y además haciendo uso del framework Hadoop 2.8.5 YARN.
+El modelo de programación utilizado es el brindado por el framework `Spark 2.4.4` utilizando el lenguaje Python y además haciendo uso del framework `Hadoop 2.8.5 YARN`.
 
 Para el almacenamiento del dataset hemos utilizado también un cubo del servicio S3 de AWS.
 
 ## Descripción técnica del diseño del software, línea base del código, dependencias, cómo usar el código y el sistema y el entorno necesarios para reproducir sus pruebas
 
-Si deseas probar el código, pincha [aquí](https://github.com/beybo/ProyectoRedditCloud/README.md) para acceder a las instrucciones colgadas en el repositorio del proyecto.
+Si deseas probar el código, pincha [aquí](https://github.com/beybo/ProyectoRedditCloud/blob/main/README.md) para acceder a las instrucciones colgadas en el repositorio del proyecto.
 
 ## Evaluación del rendimiento (aceleración, rendimiento, scalado débil y fuerte) y discusión sobre los gastos generales y optimizaciones realizadas
 
