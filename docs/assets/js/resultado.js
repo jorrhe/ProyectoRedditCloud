@@ -154,7 +154,7 @@ function cargarGraficaS1(subreddit){
 
 // Add data
     if(subreddit){
-        chart.dataSource.url= `/assets/json/s2/${subreddit}.json`;
+        chart.dataSource.url= `assets/json/s2/${subreddit}.json`;
         let title = chart.titles.create();
         title.text = subreddit;
         title.fontSize = 25;
@@ -244,7 +244,7 @@ function cargarGraficaS4(){
     am4core.useTheme(am4themes_animated);
     var chart = am4core.create("chartdiv", am4charts.XYChart);
 
-    chart.dataSource.url= "assets/json/s4_output.json"
+    chart.dataSource.url= "assets/json/S4_output.json"
     chart.padding(40, 40, 40, 40);
 
     chart.cursor = new am4charts.XYCursor();
@@ -346,7 +346,7 @@ function cargarGraficaS5(){
     am4core.useTheme(am4themes_animated);
     var chart = am4core.create("chartdiv", am4charts.XYChart);
 
-    chart.dataSource.url= "assets/json/s5_output.json"
+    chart.dataSource.url= "assets/json/S5_output.json"
     chart.padding(40, 40, 40, 40);
 
     chart.cursor = new am4charts.XYCursor();
@@ -450,7 +450,7 @@ function  cargarGraficaS6(){
     var chart = am4core.create("chartdiv", am4charts.PieChart);
     am4core.useTheme(am4themes_animated);
     // Add data
-    chart.dataSource.url = "assets/json/s6_output.json";
+    chart.dataSource.url = "assets/json/S6_output.json";
 
     // Add and configure Series
     var pieSeries = chart.series.push(new am4charts.PieSeries());
@@ -514,7 +514,7 @@ function cargarGraficaS7(){
     var chart = am4core.create("chartdiv", am4charts.XYChart);
     chart.padding(40, 40, 40, 40);
 
-    chart.dataSource.url = "assets/json/s7_output.json";
+    chart.dataSource.url = "assets/json/S7_output.json";
 
     var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
     categoryAxis.renderer.grid.template.location = 0;
@@ -694,7 +694,7 @@ function cargarGraficaS10(){
     var chart = am4core.create("chartdiv", am4charts.XYChart);
 
     // Add data
-    chart.dataSource.url = "assets/json/s10_output.json"
+    chart.dataSource.url = "assets/json/S10_output.json"
 
     //create category axis for years
     var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());

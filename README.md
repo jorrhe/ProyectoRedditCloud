@@ -28,6 +28,7 @@ El proyecto está dividido en los siguientes directorios y ficheros:
     ├── ficheros             # Ficheros de ejemplo para desarrollar los script
     ├── salida               # Ficheros con la salida de cada script
     ├── scripts              # Los scripts del proyecto
+    ├── presentacion.pdf     # Fichero con la presentación de clase
     ├── LICENSE
     └── README.md
 
