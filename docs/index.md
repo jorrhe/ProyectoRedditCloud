@@ -128,6 +128,10 @@ A continuación detallamos una tabla con el número de nodos y ejecutores y el t
 |2|2|3m10.456s|
 |2|4|2m51.837s|
 
+<p class="center">
+   <img src="./assets/img/rendimiento.jpg" class="max">
+</p>
+
 ## 9. Dificultades y optimizaciones 
 
 Uno de los aspectos más desafiantes de la implementación y paralelización ha sido el de trabajar con un dataset de 50GB.
