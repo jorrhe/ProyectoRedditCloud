@@ -422,27 +422,71 @@ function cargarGraficaS5(){
 }
 
 function  cargarGraficaS6(){
+    // Create chart instance
     var chart = am4core.create("chartdiv", am4charts.PieChart);
     am4core.useTheme(am4themes_animated);
     // Add data
-    chart.dataSource.url = "/assets/json/s6_output.json"
+    chart.dataSource.url = "s6_output.json"
 
     // Add and configure Series
     var pieSeries = chart.series.push(new am4charts.PieSeries());
     pieSeries.dataFields.value = "count";
     pieSeries.dataFields.category = "over_18";
+    pieSeries.ticks.template.disabled = true;
+    pieSeries.alignLabels = false;
+    pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
+    pieSeries.labels.template.radius = am4core.percent(-30);
+    pieSeries.labels.template.fill = am4core.color("white");
+    pieSeries.slices.template.tooltipText = "{value.value}";
 
+    //creaate colorset and set it to piechart
     var colorSet = new am4core.ColorSet();
     colorSet.list = ["#ff5700", "#e38864",].map(function(color) {
         return new am4core.color(color);
     });
     pieSeries.colors = colorSet;
 
+    //create custom Legend
+    var legend = new am4charts.Legend();
+    legend.parent = chart.chartContainer;
+    //legend.align = "right";
+    legend.position = "bottom";
+    legend.valueLabels.template.text = "{percent}%";
+    legend.itemContainers.template.clickable = false;
+    legend.itemContainers.template.focusable = false;
+    legend.itemContainers.template.cursorOverStyle = am4core.MouseCursorStyle.default;
+
+    //Populate Legend with data once it's been parsed from datasource
+    var NSFWpercentage;
+    var SFWpercentage;
+    chart.dataSource.events.on("parseended", function(ev) {
+        // parsed data is assigned to data source's `data` property
+        var data = ev.target.data;
+        for (var i = 0; i < data.length; i++) {
+            if(data[i]["over_18"] == true){
+                NSFWpercentage = data[i]["percentage"]
+            }
+            else{
+                SFWpercentage = data[i]["percentage"]
+            }
+        }
+        legend.data = [{
+            "name": "Posts con contenido adulto",
+            "percent":Math.round(NSFWpercentage*10)/10,
+            "fill":"#ff5700"
+        }, {
+            "name": "Posts sin contenido adulto",
+            "percent":Math.round(SFWpercentage*10)/10,
+            "fill": "#e38864"
+        }];
+    });
+
 }
 
 function cargarGraficaS7(){
     am4core.useTheme(am4themes_animated);
-    am4core.useTheme(am4themes_animated);
+// Themes end
+
     var chart = am4core.create("chartdiv", am4charts.XYChart);
     chart.padding(40, 40, 40, 40);
 
@@ -459,7 +503,7 @@ function cargarGraficaS7(){
     var series = chart.series.push(new am4charts.ColumnSeries());
     series.dataFields.categoryY = "subreddit";
     series.dataFields.valueX = "nsfw_posts";
-    series.tooltipText = "{valueX.value}"
+    series.columns.template.tooltipText = "{valueX.value}"
     series.columns.template.strokeOpacity = 0;
     series.columns.template.column.cornerRadiusBottomRight = 5;
     series.columns.template.column.cornerRadiusTopRight = 5;
@@ -467,7 +511,8 @@ function cargarGraficaS7(){
     var labelBullet = series.bullets.push(new am4charts.LabelBullet())
     labelBullet.label.horizontalCenter = "left";
     labelBullet.label.dx = 10;
-    labelBullet.label.text = "{values.valueX}";
+    labelBullet.label.text = "{values.valueX.workingValue.formatNumber('#.0as')}";
+    labelBullet.label.truncate=false;
     labelBullet.locationX = 1;
 
 // as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
@@ -477,25 +522,20 @@ function cargarGraficaS7(){
 
     categoryAxis.sortBySeries = series;
     chart.data=[{"nsfw_posts": 1, "subreddit": "01NebSucks"}, {"nsfw_posts": 13, "subreddit": "03103108xxx"}, {"nsfw_posts": 11, "subreddit": "0Cedeh0"}, {"nsfw_posts": 1, "subreddit": "0xbitcoin"}, {"nsfw_posts": 394, "subreddit": "1000ccplus"}, {"nsfw_posts": 98, "subreddit": "100sexiest"}, {"nsfw_posts": 1, "subreddit": "100yearsago"}, {"nsfw_posts": 1, "subreddit": "10G2"}, {"nsfw_posts": 1, "subreddit": "10relax"}, {"nsfw_posts": 15, "subreddit": "1111111111111111"}, {"nsfw_posts": 1, "subreddit": "1200isfineIGUESSugh"}, {"nsfw_posts": 1, "subreddit": "1200isjerky"}, {"nsfw_posts": 5, "subreddit": "120FPSPorn"}, {"nsfw_posts": 1, "subreddit": "12Monkeys"}, {"nsfw_posts": 1, "subreddit": "13DaysofChristmas"}, {"nsfw_posts": 4, "subreddit": "15SecPorn"}, {"nsfw_posts": 25, "subreddit": "15jar"}, {"nsfw_posts": 51, "subreddit": "177013"}, {"nsfw_posts": 1, "subreddit": "1776_ftw"}, {"nsfw_posts": 73, "subreddit": "1819club"}, {"nsfw_posts": 1, "subreddit": "1820club"}, {"nsfw_posts": 1237, "subreddit": "18_19"}, {"nsfw_posts": 107, "subreddit": "18_20"}, {"nsfw_posts": 98, "subreddit": "18nsfw"}, {"nsfw_posts": 66, "subreddit": "18plusGIFs"}, {"nsfw_posts": 363, "subreddit": "18plusclub"}, {"nsfw_posts": 2, "subreddit": "18yo_69Porn"}, {"nsfw_posts": 2, "subreddit": "18yo_Adult_Porn"}, {"nsfw_posts": 2, "subreddit": "18yo_Amateur"}, {"nsfw_posts": 2, "subreddit": "18yo_ArficanFuck"}, {"nsfw_posts": 2, "subreddit": "18yo_Ass_Fuck"}, {"nsfw_posts": 2, "subreddit": "18yo_Ass_Orgy"}, {"nsfw_posts": 1, "subreddit": "18yo_Blonde"}, {"nsfw_posts": 2, "subreddit": "18yo_Blonde_Fuck"}, {"nsfw_posts": 2, "subreddit": "18yo_Blonde_Grup"}, {"nsfw_posts": 4, "subreddit": "18yo_Blonde_Party"}, {"nsfw_posts": 2, "subreddit": "18yo_Blonde_Sex"}, {"nsfw_posts": 2, "subreddit": "18yo_Brunette"}, {"nsfw_posts": 2, "subreddit": "18yo_Fuck_Action"}, {"nsfw_posts": 1, "subreddit": "18yo_Fuck_HardPussy"}, {"nsfw_posts": 3, "subreddit": "18yo_Fuck_Mature"}, {"nsfw_posts": 3, "subreddit": "18yo_Fuck_MilfPussy"}, {"nsfw_posts": 2, "subreddit": "18yo_Fuck_Pussy"}, {"nsfw_posts": 2, "subreddit": "18yo_Fuck_Sex"}, {"nsfw_posts": 3, "subreddit": "18yo_Fuck_Sleep"}, {"nsfw_posts": 2, "subreddit": "18yo_Fucked"}, {"nsfw_posts": 2, "subreddit": "18yo_Fucked_Anal"}, {"nsfw_posts": 2, "subreddit": "18yo_Fucked_Ass"}, {"nsfw_posts": 3, "subreddit": "18yo_Fucked_Oral"}, {"nsfw_posts": 2, "subreddit": "18yo_Girl_Fuck"}, {"nsfw_posts": 2, "subreddit": "18yo_Girls_Fucked"}, {"nsfw_posts": 2, "subreddit": "18yo_Hard_Fuck"}, {"nsfw_posts": 2, "subreddit": "18yo_Mouse_Pussy"}, {"nsfw_posts": 2, "subreddit": "18yo_Orgy_Fuck"}, {"nsfw_posts": 2, "subreddit": "18yo_Party_Sex"}, {"nsfw_posts": 1, "subreddit": "18yo_Pussy_Sweet"}, {"nsfw_posts": 2, "subreddit": "18yo_Sex"}, {"nsfw_posts": 1, "subreddit": "1911"}, {"nsfw_posts": 20, "subreddit": "195"}, {"nsfw_posts": 3, "subreddit": "19Y_MadeGreatBlowjob"}, {"nsfw_posts": 1, "subreddit": "19yo_Hard_Fuck"}, {"nsfw_posts": 1, "subreddit": "1PageComics"}, {"nsfw_posts": 1, "subreddit": "1percentmc"}, {"nsfw_posts": 1, "subreddit": "1season1week"}, {"nsfw_posts": 5, "subreddit": "1stTimeinPorn"}, {"nsfw_posts": 164, "subreddit": "2007scape"}, {"nsfw_posts": 1, "subreddit": "2010sMusic"}, {"nsfw_posts": 2, "subreddit": "20445603"}, {"nsfw_posts": 82, "subreddit": "20thCenturyFoxes"}, {"nsfw_posts": 9, "subreddit": "2137"}, {"nsfw_posts": 1, "subreddit": "21Sextury_Network"}, {"nsfw_posts": 1, "subreddit": "23andme"}, {"nsfw_posts": 1, "subreddit": "240sx"}, {"nsfw_posts": 171, "subreddit": "2Booty"}, {"nsfw_posts": 1, "subreddit": "2CBreathe"}, {"nsfw_posts": 56, "subreddit": "2DTittyTouching"}, {"nsfw_posts": 14, "subreddit": "2Dicks1Hole"}, {"nsfw_posts": 1, "subreddit": "2Names3People"}, {"nsfw_posts": 2, "subreddit": "2b2t"}, {"nsfw_posts": 2, "subreddit": "2b2t_Uncensored"}, {"nsfw_posts": 16, "subreddit": "2busty"}, {"nsfw_posts": 1345, "subreddit": "2busty2hide"}, {"nsfw_posts": 1, "subreddit": "2cb"}, {"nsfw_posts": 19, "subreddit": "2for1"}, {"nsfw_posts": 3, "subreddit": "2girls1pic"}, {"nsfw_posts": 6, "subreddit": "2healthbars"}, {"nsfw_posts": 5, "subreddit": "2hmaymays"}, {"nsfw_posts": 2, "subreddit": "2irl4meirl"}, {"nsfw_posts": 1, "subreddit": "2mad42mad42mad4madlad"}, {"nsfw_posts": 3, "subreddit": "2meirl42meirl4meirl"}, {"nsfw_posts": 39, "subreddit": "2meirl4meirl"}, {"nsfw_posts": 4, "subreddit": "2mouths1cock"}, {"nsfw_posts": 1, "subreddit": "2pee4you"}, {"nsfw_posts": 1, "subreddit": "2shore"}, {"nsfw_posts": 15, "subreddit": "2wsxsw2"}, {"nsfw_posts": 1, "subreddit": "300BLK"}, {"nsfw_posts": 1, "subreddit": "303"}, {"nsfw_posts": 1, "subreddit": "30Plus"}, {"nsfw_posts": 1, "subreddit": "30PlusKik"}, {"nsfw_posts": 2, "subreddit": "322nyc"}, {"nsfw_posts": 1, "subreddit": "324thworldproblems"}, {"nsfw_posts": 3, "subreddit": "342343thyryrtyhgfhfgh"}, {"nsfw_posts": 108, "subreddit": "34Honor"}, {"nsfw_posts": 1, "subreddit": "3540"}, {"nsfw_posts": 47, "subreddit": "35honor"}, {"nsfw_posts": 2, "subreddit": "35mm"}, {"nsfw_posts": 31, "subreddit": "365daysofporn"}, {"nsfw_posts": 85, "subreddit": "3DHentai"}, {"nsfw_posts": 215, "subreddit": "3DPorncraft"}, {"nsfw_posts": 2, "subreddit": "3DS"}, {"nsfw_posts": 1, "subreddit": "3DSM"}, {"nsfw_posts": 2, "subreddit": "3DVRPorn"}, {"nsfw_posts": 7, "subreddit": "3DXFutanari"}, {"nsfw_posts": 5, "subreddit": "3D_Futanari"}, {"nsfw_posts": 1, "subreddit": "3D_NSFW"}]
+
     chart.scrollbarX = new am4core.Scrollbar();
     chart.scrollbarY = new am4core.Scrollbar();
 
-    var cellSize = 30;
-    chart.events.on("datavalidated", function(ev) {
+    var axisBreak = valueAxis.axisBreaks.create();
+    axisBreak.startValue = 400;
+    axisBreak.endValue = 1200;
 
-        // Get objects of interest
-        var chart = ev.target;
-        var categoryAxis = chart.yAxes.getIndex(0);
+    var hoverState = axisBreak.states.create("hover");
+    hoverState.properties.breakSize = 1;
+    hoverState.properties.opacity = 0.1;
+    hoverState.transitionDuration = 1500;
 
-        // Calculate how we need to adjust chart height
-        var adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight;
-
-        // get current chart height
-        var targetHeight = chart.pixelHeight + adjustHeight;
-
-        // Set it on chart's container
-        chart.svgContainer.htmlElement.style.height = targetHeight + "px";
-    });
+    axisBreak.defaultState.transitionDuration = 1000;
 }
 
 function cargarGraficaS8(){
