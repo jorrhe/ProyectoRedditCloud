@@ -2,6 +2,19 @@
 layout: default
 ---
 
+## Contenido
+
+1. [El problema](#el-problema)
+2. [Necesidad de Big Data](#necesidad-de-big-data)
+3. [La solución](#la-solucin)
+4. [Trabajo existente relacionado](#trabajo-existente-relacionado)
+5. [Descripción del modelo y los datos](#descripción-del-modelo-y-los-datos)
+6. [Infraestructura, modelos de programación y plataformas](#infraestructura-modelos-de-programación-y-plataformas)
+7. [Explicación del código y como usarlo](#explicación-del-código-y-como-usarlo)
+8. [Evaluación del rendimiento](#evaluación-del-rendimiento)
+9. [Dificultades y optimizaciones](#dificultades-y-optimizaciones)
+10. [Logros y próximos objetivos](#logros-y-próximos-objetivos)
+
 ## Descripción del problema
 
 Nuestro proyecto consiste en el análisis de la página web de agregación de contenido Reddit. La plataforma sirve para publicar y leer contenido de diferentes temáticas.  Los usuarios de Reddit son tanto creadores cómo consumidores del contenido alojado en la página.
@@ -18,7 +31,7 @@ Cómo consecuencia de la enorme actividad de Reddit, se generan constantemente y
 
 Se pueden llegar a crear hasta 80 comentarios por segundo, y hasta 20 posts. Por poner un ejemplo, solo el mes de Enero del dataset utilizado ocupa 4 GB comprimido y 47 descomprimido.
 
-![Estadisticas de Reddit](https://github.com/beybo/ProyectoRedditCloud/raw/master/docs/assets/img/stats.png "")
+![stats](./assets/img/stats.png "stats")
 
 Además, aprovechando el procesamiento de datos en paralelo podemos conseguir que dicho procesamiento se realice de manera mucho más efectiva y rápida utilizando el servicio EMR proporcionado por Amazon.
 
@@ -28,23 +41,23 @@ Además, aprovechando el procesamiento de datos en paralelo podemos conseguir qu
 
 Para abordar la solución hemos utilizado cómo lenguaje de programación Python y el framework Spark para procesar datos distribuidos junto a Hadoop.
 
-Hemos diseñado varias utilidades que  proporcionan información relevante acerca del contenido publicado en Reddit en meses anteriores. Principalmente nos hemos enfocado en extraer información de  los subreddits más populares y sus características. También hemos desarrollado scripts más generales que contemplan todos los subreddits, no sólo los más populares. Las funcionalidades desarrolladas obtienen la siguiente información para el mes de Enero de 2019:
+Hemos diseñado varias utilidades que proporcionan información relevante acerca del contenido publicado en Reddit en meses anteriores. Principalmente nos hemos enfocado en extraer información de los subreddits más populares y sus características. También hemos desarrollado scripts más generales que contemplan todos los subreddits, no sólo los más populares. Las funcionalidades desarrolladas obtienen la siguiente información para el mes de Enero de 2019:
 
-- La franja horaria donde se consigue mayor puntuación.
-- La franja horaria donde se consigue mayor puntuación en cada subreddit.
-- El número de posts por dia y por subreddit.
-- El número de palabras que tienen los 100 post más votados en su contenido.
-- El número de palabras que tienen los 100 post más votados en su título.
-- El número de posts en todo Reddit etiquetado cómo nsfw(over_18).
-- El número de posts de cada subreddit etiquetados cómo nsfw(over_18).
-- Los 10 subreddits con más puntuación.
-- Los 10 subreddits con más comentarios.
-- Relación de puntuación y número de comentarios de cada subreddit.
-- Los usuarios que más han posteado en cada subreddit.
+- [La franja horaria donde se consigue mayor puntuación](/resultado?r=s1).
+- [La franja horaria donde se consigue mayor puntuación en cada subreddit](/resultado?r=s2).
+- [El número de posts por dia y por subreddit](/resultado?r=s3).
+- [El número de palabras que tienen los 100 post más votados en su contenido](/resultado?r=s4).
+- [El número de palabras que tienen los 100 post más votados en su título](/resultado?r=s5).
+- [El número de posts en todo Reddit etiquetado cómo nsfw(over_18)](/resultado?r=s6).
+- [El número de posts de cada subreddit etiquetados cómo nsfw(over_18)](/resultado?r=s7).
+- [Los 10 subreddits con más puntuación](/resultado?r=s8).
+- [Los 10 subreddits con más comentarios.](/resultado?r=s9).
+- [Relación de puntuación y número de comentarios de cada subreddit](/resultado?r=s10).
+- [Los usuarios que más han posteado en cada subreddit](/resultado?r=s11).
 
 La información producida por los scripts desarrollados, la mostramos en diferentes gráficos realizados con las librerías de Javascript amcharts y flourish studio. Estas librerías permiten visualizar gráficas interactivas con un gran dinamismo y bonita apariencia a partir de los resultados de los scripts.
 
-### Trabajo existente relacionado
+## Trabajo existente relacionado
 
 La propia página de agregación de contenido ofrece la posibilidad de ver los posts y subreddits que son relevantes en la actualidad, pero no muestra los de días anteriores. Esta funcionalidad puede ser útil para los usuarios que utilizan a diario la plataforma pero no proporcionan un análisis más allá del momento actual.
 
@@ -77,7 +90,7 @@ Para el almacenamiento del dataset hemos utilizado también un cubo del servicio
 
 ## Descripción técnica del diseño del software, línea base del código, dependencias, cómo usar el código y el sistema y el entorno necesarios para reproducir sus pruebas
 
-Si deseas probar el código, pincha [aquí](https://github.com/beybo/ProyectoRedditCloud) para acceder a las instrucciones colgadas en el repositorio del proyecto.
+Si deseas probar el código, pincha [aquí](https://github.com/beybo/ProyectoRedditCloud/README.md) para acceder a las instrucciones colgadas en el repositorio del proyecto.
 
 ## Evaluación del rendimiento (aceleración, rendimiento, scalado débil y fuerte) y discusión sobre los gastos generales y optimizaciones realizadas
 
