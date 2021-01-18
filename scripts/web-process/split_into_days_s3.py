@@ -56,7 +56,7 @@ if len(sys.argv) == 3:
 
             keys = filas[0].keys()
             oredenada = sorted(filas, key=lambda k: k["31"], reverse=True)
-            with open('s3_out.csv', 'w', newline='') as output_file:
+            with open('../s3_out.csv', 'w', newline='') as output_file:
                 dict_writer = csv.DictWriter(output_file, keys)
                 dict_writer.writeheader()
                 dict_writer.writerows(oredenada[0: 1000])

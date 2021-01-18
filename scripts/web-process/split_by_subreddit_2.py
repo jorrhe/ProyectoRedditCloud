@@ -1,6 +1,6 @@
 import json
 
-with open("../salida/S2_output.json",'r')as file:
+with open("../../salida/S2_output.json", 'r')as file:
     line = file.readline()
     jsonData = json.loads(line)
     previousSubreddit= jsonData['subreddit']
