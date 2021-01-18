@@ -47,9 +47,7 @@ Cómo consecuencia de la enorme actividad de Reddit, se generan constantemente y
 
 Se pueden llegar a crear hasta 80 comentarios por segundo, y hasta 20 posts. Por poner un ejemplo, solo el mes de Enero del dataset utilizado ocupa 4 GB comprimido y 47 descomprimido.
 
-<p class="center">
-   <img src="./assets/img/stats.png">
-</p>
+<img src="./assets/img/stats.png">
 
 Además, aprovechando el procesamiento de datos en paralelo podemos conseguir que dicho procesamiento se realice de manera mucho más efectiva y rápida utilizando el servicio EMR proporcionado por Amazon.
 
