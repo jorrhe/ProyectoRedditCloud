@@ -244,7 +244,7 @@ function cargarGraficaS4(){
     am4core.useTheme(am4themes_animated);
     var chart = am4core.create("chartdiv", am4charts.XYChart);
 
-    chart.dataSource.url= "/assets/json/s4_output.json"
+    chart.dataSource.url= "./assets/json/s4_output.json"
     chart.padding(40, 40, 40, 40);
 
     chart.cursor = new am4charts.XYCursor();
@@ -346,7 +346,7 @@ function cargarGraficaS5(){
     am4core.useTheme(am4themes_animated);
     var chart = am4core.create("chartdiv", am4charts.XYChart);
 
-    chart.dataSource.url= "/assets/json/s5_output.json"
+    chart.dataSource.url= "./assets/json/s5_output.json"
     chart.padding(40, 40, 40, 40);
 
     chart.cursor = new am4charts.XYCursor();
@@ -694,7 +694,7 @@ function cargarGraficaS10(){
     var chart = am4core.create("chartdiv", am4charts.XYChart);
 
     // Add data
-    chart.dataSource.url = "/assets/json/s10_output.json"
+    chart.dataSource.url = "./assets/json/s10_output.json"
 
     //create category axis for years
     var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
