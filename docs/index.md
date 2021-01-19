@@ -34,7 +34,7 @@ layout: default
 
 Nuestro proyecto consiste en el análisis de la página web de agregación de contenido Reddit. La plataforma sirve para publicar y leer contenido de diferentes temáticas.  Los usuarios de Reddit son tanto creadores cómo consumidores del contenido alojado en la página.
 
-El sitio web está compuesto por comunidades individuales conocidas cómo subreddits. Dentro de cada subreddit se publican post relacionados que giran entorno a una temática. Se puede interactuar con estos posts principalmente publicando un comentario y dejando un voto positivo o negativo, obteniendo el post asi interacciones y valoraciones de los usuarios.
+El sitio web está compuesto por comunidades individuales conocidas cómo subreddits. Dentro de cada subreddit se publican post relacionados que giran entorno a una temática. Se puede interactuar con estos posts principalmente publicando un comentario y dejando un voto positivo o negativo, obteniendo asi interacciones y valoraciones de los usuarios.
 
 
 Reddit engloba todo tipo de contenidos: vídeos, imágenes, enlaces, textos,etc… Es como una especie de foro dividido en subforos de todo tipo de temáticas donde los usuarios pueden comentar y votar posts realizados por otros usuarios.
@@ -47,9 +47,7 @@ Cómo consecuencia de la enorme actividad de Reddit, se generan constantemente y
 
 Se pueden llegar a crear hasta 80 comentarios por segundo, y hasta 20 posts. Por poner un ejemplo, solo el mes de Enero del dataset utilizado ocupa 4 GB comprimido y 47 descomprimido.
 
-<p class="center">
-   <img src="./assets/img/stats.png">
-</p>
+<img src="./assets/img/stats.png">
 
 Además, aprovechando el procesamiento de datos en paralelo podemos conseguir que dicho procesamiento se realice de manera mucho más efectiva y rápida utilizando el servicio EMR proporcionado por Amazon.
 
@@ -75,7 +73,7 @@ La información producida por los scripts desarrollados, la mostramos en diferen
 
 ## 4. Trabajo existente relacionado
 
-La propia página de agregación de contenido ofrece la posibilidad de ver los posts y subreddits que son relevantes en la actualidad, pero no muestra los de días anteriores. Esta funcionalidad puede ser útil para los usuarios que utilizan a diario la plataforma pero no proporcionan un análisis más allá del momento actual.
+La propia página de agregación de contenido ofrece la posibilidad de ver los posts y subreddits que son relevantes en la actualidad, pero no muestra los de días anteriores. Esta funcionalidad puede ser útil para los usuarios que utilizan a diario la plataforma pero no proporciona un análisis más allá del momento actual.
 
 Además existe la página [subredditstats](https://subredditstats.com/), que muestra algunas estadísticas actuales de los subreddits. Esta información que nos ofrece es útil pero tiene algunas limitaciones en nuestra opinión, ya que son estadísticas muy generales y no muestran estadísticas de fechas anteriores. 
 
@@ -89,7 +87,7 @@ El dataset utilizado ha sido descargado desde [pushshift.io](https://pushshift.i
 
 [Aquí](https://files.pushshift.io/reddit/) está el directorio de contenido donde se encuentra nuestro dataset entre muchos otros y el [enlace directo al dataset](https://files.pushshift.io/reddit/submissions/RS_2019-01.zst).
 
-En reddit los dos elementos principales son: posts y comentarios. En nuestro análisis hemos utilizado posts. Un post tiene campos como:
+En reddit los dos elementos principales son: posts y comentarios. En nuestro análisis hemos utilizado todos los posts recopilados por pushshiftio de Enero de 2019. Un post tiene campos como:
 
 - `title`: titulo del post.
 - `author`: el autor del post
@@ -99,13 +97,13 @@ En reddit los dos elementos principales son: posts y comentarios. En nuestro an�
 - `score`: puntuación del post
 - ...
 
-Cada post tiene muchos más campos que estos que se pueden revisar descargando una muestra del dataset aquí. Además en esta página de documentación se ofrece una explicación más detallada de la mayoría de estos.
+Cada post tiene muchos más campos que estos que se pueden revisar descargando una muestra del dataset [aquí](https://files.pushshift.io/reddit/submissions/sample.json). Además en [esta](https://pushshift.io/api-parameters/) página de documentación se ofrece una explicación más detallada de la mayoría de estos.
 
-En el repositiorio de Github tenemos un [fichero en formato JSON](https://github.com/beybo/ProyectoRedditCloud/blob/main/ficheros/EjemploFila.json) con todos los campos que puede tener un post que se ha extraido del dataset de pushshift.io.
+En el repositorio de Github tenemos un [fichero en formato JSON](https://github.com/beybo/ProyectoRedditCloud/blob/main/ficheros/EjemploFila.json) con todos los campos que puede tener un post que se ha extraido del dataset de pushshift.io.
 
 ## 6. Infraestructura, modelos de programación y plataformas
 
-En cuanto a la infraestructura se ha utilizado un cluster `m4x.large` de AWS, de un nodo master y otros dos workers, proporcionado por el servicio de EMR de AWS.
+En cuanto a la infraestructura se ha utilizado un cluster `m4.xlarge` de AWS, de un nodo master y otros dos workers, proporcionado por el servicio de EMR de AWS.
 
 El modelo de programación utilizado es el brindado por el framework `Spark 2.4.4` utilizando el lenguaje Python y además haciendo uso del framework `Hadoop 2.8.5 YARN`.
 
@@ -117,7 +115,7 @@ Si deseas probar el código, pincha [aquí](https://github.com/beybo/ProyectoRed
 
 ## 8. Evaluación del rendimiento
 
-A continuación detallamos una tabla con el número de nodos y ejecutores y el tiempo que ha llevado la ejecución del script S3_reddit.py en un cluster m4x.large:
+A continuación detallamos una tabla con el número de nodos y ejecutores y el tiempo que ha llevado la ejecución del script S3_reddit.py en un cluster m4.xlarge:
 
 | Número de Ejecutores | Número de Cores | Tiempo |
 |:-------------|:------------------|:------|
@@ -128,13 +126,15 @@ A continuación detallamos una tabla con el número de nodos y ejecutores y el t
 |2|2|3m10.456s|
 |2|4|2m51.837s|
 
+<img src="./assets/img/rendimiento.png">
+
 ## 9. Dificultades y optimizaciones 
 
 Uno de los aspectos más desafiantes de la implementación y paralelización ha sido el de trabajar con un dataset de 50GB.
 
 No solo tuvimos que implementar el código intentando optimizar los recursos de memoria disponibles (por ejemplo realizando SELECTS de solo los datos necesarios en cada etapa del pipeline en vez de seleccionar todo), también tuvimos que realizar varias pruebas en diferentes máquinas para encontrar la que más se ajustaba en cuanto a rendimiento y coste.
 
-Otra técnica para la mejora del rendimiento que realizamos fue aumentar la memoria de Spark a 9486MB modificando un parámetro del archivo de configuración ubicado en `/etc/spark/conf.dist/spark-defaults.conf spark.driver.memory`  
+Otra técnica para la mejora del rendimiento que realizamos fue aumentar la memoria de Spark a 9486MB modificando el parámetro `spark.driver.memory` del archivo de configuración ubicado en `/etc/spark/conf.dist/spark-defaults.conf`  
 
 ## 10. Logros y próximos objetivos
 
