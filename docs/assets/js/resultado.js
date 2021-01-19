@@ -370,6 +370,12 @@ function cargarGraficaS5(){
 
     })
 
+    let postsDom = document.createElement("div");
+    postsDom.innerHTML = `<p style="text-align: center">Al hacer click en los títulos del eje "Y", te redirecciona al post correspondiente</p>`;
+    let extra = document.getElementById("extra");
+
+    extra.parentElement.insertBefore(postsDom,extra);
+
     var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
     categoryAxis.renderer.grid.template.location = 0;
     categoryAxis.dataFields.category = "title";
