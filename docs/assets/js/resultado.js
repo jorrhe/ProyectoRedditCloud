@@ -550,11 +550,6 @@ function cargarGraficaS7(){
     chart.scrollbarX = new am4core.Scrollbar();
     chart.scrollbarY = new am4core.Scrollbar();
 
-    var hoverState = axisBreak.states.create("hover");
-    hoverState.properties.breakSize = 1;
-    hoverState.properties.opacity = 0.1;
-    hoverState.transitionDuration = 1500;
-
     var cellSize = 30;
     chart.events.on("datavalidated", function(ev) {
 
