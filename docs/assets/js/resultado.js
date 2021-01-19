@@ -262,10 +262,9 @@ function cargarGraficaS4(){
 
     })
 
-
     let postsDom = document.createElement("div");
-    postsDom.innerHTML = `<p>Al hacer cliclk en los títulos del eje Y te redirecciona al post correspondiente</p>`;
-
+    postsDom.innerHTML = `<p>Al hacer click en los títulos del eje "Y", te redirecciona al post correspondiente</p>`;
+    div.appendChild(postsDom);
 
     var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
     categoryAxis.renderer.grid.template.location = 0;
