@@ -3,12 +3,12 @@
 En este proyecto, hemos generado scripts para analizar 
 la página web de agregación de contenido Reddit.
 
-Para más información accede a la [página web del proyecto](https://beybo.github.io/ProyectoRedditCloud/).
+Para más información accede a la [página web del proyecto](https://jorrhe.github.io/ProyectoRedditCloud/).
 
 El proyecto ha sido realizado para la asignatura de Cloud y Big Data por:
 
 - Daniel Alcázar Muñoz
-- Jorge Roselló Martín
+- Jorge R.M
 - Francisco Javier Lozano Hernández
 
 El dataset con los post que hemos utilizado para este proyecto ha sido
