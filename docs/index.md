@@ -99,7 +99,7 @@ En reddit los dos elementos principales son: posts y comentarios. En nuestro an�
 
 Cada post tiene muchos más campos que estos que se pueden revisar descargando una muestra del dataset [aquí](https://files.pushshift.io/reddit/submissions/sample.json). Además en [esta](https://pushshift.io/api-parameters/) página de documentación se ofrece una explicación más detallada de la mayoría de estos.
 
-En el repositorio de Github tenemos un [fichero en formato JSON](https://github.com/beybo/ProyectoRedditCloud/blob/main/ficheros/EjemploFila.json) con todos los campos que puede tener un post que se ha extraido del dataset de pushshift.io.
+En el repositorio de Github tenemos un [fichero en formato JSON](https://github.com/jorrhe/ProyectoRedditCloud/blob/main/ficheros/EjemploFila.json) con todos los campos que puede tener un post que se ha extraido del dataset de pushshift.io.
 
 ## 6. Infraestructura, modelos de programación y plataformas
 
@@ -111,7 +111,7 @@ Para el almacenamiento del dataset hemos utilizado también un cubo del servicio
 
 ## 7. Explicación del código y como usarlo
 
-Si deseas probar el código, pincha [aquí](https://github.com/beybo/ProyectoRedditCloud/blob/main/README.md) para acceder a las instrucciones colgadas en el repositorio del proyecto.
+Si deseas probar el código, pincha [aquí](https://github.com/jorrhe/ProyectoRedditCloud/blob/main/README.md) para acceder a las instrucciones colgadas en el repositorio del proyecto.
 
 ## 8. Evaluación del rendimiento
 
